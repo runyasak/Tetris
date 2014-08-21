@@ -91,7 +91,6 @@ public class Board {
 				drop_y = getColumnHeight(x+i) - skirt_arr[i];
 			}
 		}
-	
 		return drop_y; // YOUR CODE HERE
 		
 	}
@@ -192,12 +191,18 @@ public class Board {
 				int check_x = x + body[i].x;
 				int check_y = y + body[i].y;
 				grid[check_x][check_y] = true;
-				// System.out.printf("x = %d , y = %d\n",check_x, check_y);
-				//System.out.println(this.toString());
+			}
+			for (int i = 0; i < piece.getHeight(); i++) {
+				System.out.println(y);
+				if (getRowWidth(i+y) == width ){
+					System.out.println("wreafdf");
+					return PLACE_ROW_FILLED;
+				}
 			}
 		}
-
-		// System.out.println(toString());
+		
+		
+//		if( clearRows() > 0) result = PLACE_ROW_FILLED;
 		return result;
 	}
 
@@ -208,6 +213,20 @@ public class Board {
 	public int clearRows() {
 		int rowsCleared = 0;
 		// YOUR CODE HERE
+		for(int i = 0; i < getMaxHeight(); i++){
+			if(getRowWidth(i) == width){
+				rowsCleared++;
+				for(int j = 0; j < width; j++){
+					grid[j][i] = false;
+				}
+				for(int k = i; k < getMaxHeight(); k++){
+					for(int m = 0; m < width; m++){
+						grid[m][k] = grid[m][k+1];
+					}
+				}
+				i--;
+			}
+		}
 		sanityCheck();
 		return rowsCleared;
 	}
