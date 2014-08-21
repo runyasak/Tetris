@@ -87,10 +87,11 @@ public class Board {
 		int[] skirt_arr = piece.getSkirt();
 		int drop_y = 0;
 		for(int i = 0; i < skirt_arr.length; i++){
-			if(i == 0 || getColumnHeight(x+i) - skirt_arr[i] > drop_y){
+			if(getColumnHeight(x+i) - skirt_arr[i] > drop_y){
 				drop_y = getColumnHeight(x+i) - skirt_arr[i];
 			}
 		}
+	
 		return drop_y; // YOUR CODE HERE
 		
 	}
@@ -100,7 +101,7 @@ public class Board {
 	 * block + 1. The height is 0 if the column contains no blocks.
 	 */
 	public int getColumnHeight(int x) {
-		int column_height = 0;
+		int column_height=-1;
 		for (int i = 0; i < height; i++) {
 			if (grid[x][i] == true) {
 				column_height = i;
