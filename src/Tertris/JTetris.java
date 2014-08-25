@@ -561,7 +561,7 @@ public class JTetris extends JComponent {
 			}
 		}
 	}
-
+	
 	/**
 	 * Updates the timer to reflect the current setting of the speed slider.
 	 */

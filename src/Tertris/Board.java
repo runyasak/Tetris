@@ -14,7 +14,7 @@ public class Board {
 	private boolean[][] grid;
 	private boolean DEBUG = true;
 	boolean committed;
-
+	
 	private boolean[][] xGrid;
 
 	// Here a few trivial methods are provided:
@@ -169,6 +169,7 @@ public class Board {
 		}
 
 		TPoint[] body = piece.getBody();
+		
 		// MY CHECK
 		for (int i = 0; i < body.length; i++) {
 			int check_x = x + body[i].x;
@@ -187,22 +188,21 @@ public class Board {
 		}
 		// MY PLACE
 		if (result == PLACE_OK) {
+			
 			for (int i = 0; i < body.length; i++) {
 				int check_x = x + body[i].x;
 				int check_y = y + body[i].y;
 				grid[check_x][check_y] = true;
 			}
+			
 			for (int i = 0; i < piece.getHeight(); i++) {
-				System.out.println(y);
 				if (getRowWidth(i+y) == width ){
-					System.out.println("wreafdf");
 					return PLACE_ROW_FILLED;
 				}
 			}
 		}
-		
-		
-//		if( clearRows() > 0) result = PLACE_ROW_FILLED;
+		//System.out.println(y);
+				
 		return result;
 	}
 

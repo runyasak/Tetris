@@ -55,5 +55,7 @@ public class BoardTest {
 	// Make more tests, by putting together longer series of
 	// place, clearRows, undo, place ... checking a few col/row/max
 	// numbers that the board looks right after the operations.
-
+	
+	//--------->>>> MY TEST <<<<<---------
+	
 }
