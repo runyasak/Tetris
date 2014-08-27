@@ -22,10 +22,10 @@ public class PieceTest {
 	@Before
 	public void setUp() throws Exception {
 
-		pyr1 = new Piece(Piece.PYRAMID_STR);
-		pyr2 = pyr1.computeNextRotation();
-		pyr3 = pyr2.computeNextRotation();
-		pyr4 = pyr3.computeNextRotation();
+		pyr1 = Piece.getPieces()[6];
+		pyr2 = pyr1.fastRotation();
+		pyr3 = pyr2.fastRotation();
+		pyr4 = pyr3.fastRotation();
 
 		s = new Piece(Piece.S1_STR);
 		sRotated = s.computeNextRotation();
