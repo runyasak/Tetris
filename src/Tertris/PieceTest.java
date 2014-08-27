@@ -62,5 +62,15 @@ public class PieceTest {
 		assertTrue(Arrays.equals(new int[] { 0, 0, 1 }, s.getSkirt()));
 		assertTrue(Arrays.equals(new int[] { 1, 0 }, sRotated.getSkirt()));
 	}
-
+	
+	//--------->>>> MY TEST <<<<<---------
+	@Test
+	public void testEqual() {
+		assertEquals(true, pyr1.equals(Piece.getPieces()[6]));
+		assertEquals(true, pyr2.equals(pyr1.computeNextRotation()));
+		assertEquals(true, pyr3.equals(pyr2.computeNextRotation()));
+		assertEquals(true, pyr4.equals(pyr3.computeNextRotation()));
+		
+		assertEquals(true, s.equals(sRotated));
+	}
 }

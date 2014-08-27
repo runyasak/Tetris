@@ -152,7 +152,7 @@ public class Piece {
 			return false;
 		Piece other = (Piece) obj;
 
-		for (int i = 0; i < other.pieces.length; i++) {
+		for (int i = 0; i < other.getWidth(); i++) {
 			if (other.body[i].x != this.body[i].x
 					&& other.body[i].y != this.body[i].y) {
 				return false;
