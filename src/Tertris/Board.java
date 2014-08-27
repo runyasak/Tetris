@@ -15,6 +15,9 @@ public class Board {
 	private boolean DEBUG = true;
 	boolean committed;
 	
+	// My contribute
+	private int my_currentY;
+	
 	private boolean[][] xGrid;
 
 	// Here a few trivial methods are provided:
@@ -91,6 +94,17 @@ public class Board {
 				drop_y = getColumnHeight(x+i) - skirt_arr[i];
 			}
 		}
+		
+		if(drop_y >= get_myCurrentY()){
+			drop_y = 0;
+			for(int i = 0; i < my_currentY; i++){
+				if(grid[x][i] == true){
+					drop_y = i;
+				}
+			}
+			drop_y++;
+		}
+
 		return drop_y; // YOUR CODE HERE
 		
 	}
@@ -113,7 +127,7 @@ public class Board {
 	/**
 	 * Returns the number of filled blocks in the given row.
 	 */
-	public int getRowWidth(int y) {
+	public int getRowWidth(int y) {	
 		int row_width = 0;
 		for (int i = 0; i < width; i++) {
 			if (grid[i][y] == true) {
@@ -159,7 +173,8 @@ public class Board {
 			throw new RuntimeException("place commit problem");
 
 		int result = PLACE_OK;
-
+		
+		set_myCurrentY(y);
 		// YOUR CODE HERE
 		// back up
 		for (int i = 0; i < grid.length; i++) {
@@ -201,10 +216,18 @@ public class Board {
 				}
 			}
 		}
-		//System.out.println(y);
 				
 		return result;
 	}
+	
+	//My Method
+		public void set_myCurrentY(int newY){
+			my_currentY = newY;
+		}
+		
+		public int get_myCurrentY(){
+			return my_currentY;
+		}
 
 	/**
 	 * Deletes rows that are filled all the way across, moving things above
@@ -230,7 +253,7 @@ public class Board {
 		sanityCheck();
 		return rowsCleared;
 	}
-
+	
 	/**
 	 * Reverts the board to its state before up to one place and one
 	 * clearRows(); If the conditions for undo() are not met, such as calling

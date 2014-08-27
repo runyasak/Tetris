@@ -57,5 +57,60 @@ public class BoardTest {
 	// numbers that the board looks right after the operations.
 	
 	//--------->>>> MY TEST <<<<<---------
+	Board my_board;
+	Piece STICK, L1, L2, S1, S2, SQR, PYR;
+	@Before
+	public void my_setUp() throws Exception {
+		my_board = new Board(10, 20);
+		
+		STICK = new Piece(Piece.STICK_STR);
+		L1 = new Piece(Piece.L1_STR);
+		L2 = new Piece(Piece.L2_STR);
+		S1 = new Piece(Piece.S1_STR);
+		S2 = new Piece(Piece.S2_STR);
+		SQR = new Piece(Piece.SQUARE_STR);
+		PYR = new Piece(Piece.PYRAMID_STR);
+	}
+	
+	@Test
+	public void test_placeOK() {
+		assertEquals(Board.PLACE_OK,my_board.place(STICK, 0, 0));
+		assertEquals(Board.PLACE_OK,my_board.place(SQR, 0, 4));
+		assertEquals(6, my_board.getMaxHeight());
+		assertEquals(1, my_board.getRowWidth(0));
+	}
+	
+	@Test
+	public void test_placeBad() {
+		assertEquals(Board.PLACE_OK, my_board.place(L1, 0, 0));
+		assertEquals(Board.PLACE_BAD, my_board.place(PYR, 0, 0));
+		
+		//The piece that place bad will be disappeared.
+		assertEquals(3, my_board.getMaxHeight());
+		assertEquals(2, my_board.getRowWidth(0));
+	}
+	
+	@Test
+	public void test_placeOutBound() {
+		assertEquals(Board.PLACE_OUT_BOUNDS, my_board.place(S1, -1, 0));
+		assertEquals(Board.PLACE_OUT_BOUNDS, my_board.place(S2, 11, 0));
+		assertEquals(Board.PLACE_OUT_BOUNDS, my_board.place(S1, 5, -9));
+		
+		//The piece that place out bound will be disappeared.
+		assertEquals(0, my_board.getMaxHeight());
+	}
+	
+	@Test
+	public void test_placeRowFilled_clearRow() {
+		STICK = STICK.computeNextRotation();
+		
+		assertEquals(Board.PLACE_OK, my_board.place(STICK, 0, 0));
+		assertEquals(Board.PLACE_OK, my_board.place(STICK, 4, 0));
+		
+		//Row 0 is full
+		assertEquals(Board.PLACE_ROW_FILLED, my_board.place(SQR, 8, 0));
+		
+		assertEquals(1 ,my_board.clearRows());
+	}
 	
 }

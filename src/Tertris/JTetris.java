@@ -508,10 +508,10 @@ public class JTetris extends JComponent {
 	 * rows that are filled all the way across in green.
 	 */
 	public void paintComponent(Graphics g) {
-
+		
+		g.setColor(Color.pink);
 		// Draw a rect around the whole thing
 		g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
-
 		// Draw the line separating the top
 		int spacerY = yPixel(board.getHeight() - TOP_SPACE - 1);
 		g.drawLine(0, spacerY, getWidth() - 1, spacerY);
@@ -529,6 +529,7 @@ public class JTetris extends JComponent {
 		final int bWidth = board.getWidth();
 
 		int x, y;
+		
 		// Loop through and draw all the blocks
 		// left-right, bottom-top
 		for (x = 0; x < bWidth; x++) {
@@ -546,17 +547,15 @@ public class JTetris extends JComponent {
 			// draw from 0 up to the col height
 			final int yHeight = board.getColumnHeight(x);
 			for (y = 0; y < yHeight; y++) {
+				g.setColor(Color.cyan);
 				if (board.getGrid(x, y)) {
 					boolean filled = (board.getRowWidth(y) == bWidth);
 					if (filled)
-						g.setColor(Color.green);
+						g.setColor(Color.orange);
 
 					g.fillRect(left + 1, yPixel(y) + 1, dx, dy); // +1 to leave
 																	// a white
 																	// border
-
-					if (filled)
-						g.setColor(Color.black);
 				}
 			}
 		}
