@@ -83,6 +83,7 @@ public class JTetris extends JComponent {
 	protected JCheckBox testButton;
 
 	public final int DELAY = 400; // milliseconds per tick
+	
 
 	/**
 	 * Creates a new JTetris where each tetris square is drawn with the given
@@ -250,11 +251,11 @@ public class JTetris extends JComponent {
 	 */
 	public Piece pickNextPiece() {
 		int pieceNum;
-
+		
 		pieceNum = (int) (pieces.length * random.nextDouble());
-
+		
 		Piece piece = pieces[pieceNum];
-
+		
 		return (piece);
 	}
 
@@ -508,10 +509,14 @@ public class JTetris extends JComponent {
 	 * rows that are filled all the way across in green.
 	 */
 	public void paintComponent(Graphics g) {
+	
+		g.setColor(Color.black);
+		g.fillRect(0, 0, getWidth()-1, getHeight()-1);
 		
 		g.setColor(Color.pink);
 		// Draw a rect around the whole thing
 		g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
+		
 		// Draw the line separating the top
 		int spacerY = yPixel(board.getHeight() - TOP_SPACE - 1);
 		g.drawLine(0, spacerY, getWidth() - 1, spacerY);

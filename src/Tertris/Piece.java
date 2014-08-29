@@ -31,7 +31,6 @@ public class Piece {
 
 	static private Piece[] pieces; // singleton static array of first rotations
 
-	private int max_x;
 
 	/**
 	 * Defines a new piece given a TPoint[] array of its body. Makes its own
@@ -52,7 +51,7 @@ public class Piece {
 				height = points[i].y;
 			}
 		}
-		max_x = width;
+
 		width++;
 		height++;
 
